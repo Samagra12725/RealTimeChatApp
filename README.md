@@ -1,53 +1,159 @@
-# 📱 Chatly - Real-Time Chat Application  
+# 💬 Chatly - Real-Time Chat Application
 
-![MERN](https://img.shields.io/badge/Stack-MERN-green?logo=mongodb&logoColor=white)  
-![Socket.IO](https://img.shields.io/badge/RealTime-Socket.IO-black?logo=socket.io)  
-![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)  
-![Contributions](https://img.shields.io/badge/Contributions-Welcome-brightgreen.svg)  
-
-Chatly is a **real-time chat application** built with the **MERN stack (MongoDB, Express.js, React.js, Node.js)** and **Socket.IO**.  
-It enables users to communicate instantly with **secure authentication**, a **smooth responsive UI**, and **real-time messaging**.  
+Chatly is a **full-stack real-time chat application** built using the **MERN stack (MongoDB, Express.js, React.js, Node.js)** and **Socket.IO** for instant communication. It enables users to send messages, share images, and view online statuses with real-time updates.
 
 ---
 
-## 🚀 Features  
+## 🧩 Tech Stack
 
-- 🔒 **User Authentication & Authorization** (JWT, bcrypt.js)  
-- 💬 **Real-Time Messaging** with **Socket.IO**  
-- 🟢 **Online/Offline User Status**  
-- 📨 **One-to-One Chat Support**  
-- 📱 **Responsive UI with React + Tailwind CSS**  
-- ⚡ **Optimized APIs for scalability**  
-- 🗄️ **MongoDB for persistent storage**  
+### Frontend
 
+* ⚛️ **React (Vite)** – Component-based UI
+* 🎨 **Tailwind CSS** – Modern responsive styling
+* 🔁 **Redux Toolkit** – State management
+* 🔌 **Socket.IO Client** – Real-time communication
 
----
+### Backend
 
-## 🛠️ Tech Stack  
-
-| Frontend | Backend | Database | Real-Time | Authentication |
-|----------|---------|----------|------------|----------------|
-| ![React](https://img.shields.io/badge/React-20232A?logo=react&logoColor=61DAFB) | ![Node.js](https://img.shields.io/badge/Node.js-43853D?logo=node.js&logoColor=white) | ![MongoDB](https://img.shields.io/badge/MongoDB-4ea94b?logo=mongodb&logoColor=white) | ![Socket.IO](https://img.shields.io/badge/Socket.IO-000000?logo=socket.io&logoColor=white) | ![JWT](https://img.shields.io/badge/JWT-black?logo=JSON%20web%20tokens) |
-
----
-
-## 📂 Project Structure  
-chatly/
-│── client/ # Frontend (React.js + Tailwind CSS)
-│── server/ # Backend (Node.js, Express.js, MongoDB, Socket.IO)
-│── .env # Environment variables
-│── package.json # Project metadata & dependencies
-│── README.md # Documentation
-
+* 🧠 **Node.js + Express.js** – RESTful API & WebSocket server
+* 🗄️ **MongoDB + Mongoose** – Database & schema management
+* ☁️ **Cloudinary** – Image hosting service
+* 🧱 **Multer** – File upload handling
+* 🔒 **Bcrypt.js** – Password hashing
+* 🧩 **CORS, Cookie-parser** – Security and request management
 
 ---
 
-## ⚙️ Installation & Setup  
+## 🚀 Features
 
-### 1️⃣ Clone the repository  
-```bash
-git clone https://github.com/your-username/chatly.git
-cd chatly
-` 
+* 🔐 User registration and login with JWT authentication
+* 💬 Real-time one-to-one chat using Socket.IO
+* 🟢 Online user tracking (presence system)
+* 🖼️ Image upload via Cloudinary
+* 💾 Persistent message storage in MongoDB
+* 🔄 State management using Redux
+* 🧑‍💻 Responsive and modern UI with Tailwind
+
+---
+
+## 🧱 Project Architecture
+
+```mermaid
+graph TD
+A[React Frontend] -->|REST API| B[Express Backend]
+A -->|Socket.IO| C[Socket.IO Server]
+B --> D[(MongoDB)]
+C --> D
+B --> E[(Cloudinary)]
+```
+
+---
+
+## 🔁 Message Flow
+
+1. User A sends a message → Socket emits `send-msg`.
+2. Backend receives and saves it to MongoDB.
+3. Server emits `msg-receive` event to recipient.
+4. Receiver’s UI updates instantly.
+5. Message persists via REST endpoint for reloads.
+
+---
+
+## 🧩 Folder Structure
+
+```
+root/
+├── backend/
+│   ├── controllers/
+│   ├── models/
+│   ├── routes/
+│   ├── socket/
+│   ├── utils/
+│   └── index.js
+└── frontend/
+    ├── src/
+    │   ├── components/
+    │   ├── redux/
+    │   ├── pages/
+    │   ├── App.jsx
+    │   └── main.jsx
+```
+
+---
+
+## 📘 Data Models
+
+### 🧑 User Model
+
+```js
+{
+  name: String,
+  userName: { type: String, unique: true },
+  email: { type: String, unique: true },
+  password: String,
+  image: String,
+  followers: Array,
+  following: Array
+}
+```
+
+### 💬 Message Model
+
+```js
+{
+  sender: ObjectId,
+  receiver: ObjectId,
+  text: String,
+  image: String,
+  createdAt: Date
+}
+```
+
+### 🗨️ Conversation Model
+
+```js
+{
+  participants: [ObjectId],
+  messages: [ObjectId]
+}
+```
+
+---
+
+## 🔐 Authentication Flow
+
+1. User signs up → Password hashed with **bcryptjs**.
+2. Server generates **JWT token** → Sent via cookie or header.
+3. Protected routes use `isAuth` middleware for validation.
+
+---
+
+## ⚡ Socket.IO Real-Time Flow
+
+* `add-user` → Adds user to `userSocketMap`.
+* `send-msg` → Emits new message to receiver.
+* `getOnlineUsers` → Broadcasts list of active users.
+* `disconnect` → Removes user from online map.
+
+---
+
+## ☁️ File Upload Flow
+
+1. Frontend sends multipart form (text + file).
+2. Multer handles parsing.
+3. File uploaded to Cloudinary.
+4. Cloudinary URL saved in MongoDB.
+
+---
 
 
+## 🧾 License
+
+This project is open-source and free to use for learning and development purposes.
+
+---
+
+## 👨‍💻 Author
+
+**Samagra Jaiswal**
+Software Developer | MERN Stack Enthusiast
