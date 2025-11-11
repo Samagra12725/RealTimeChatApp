@@ -144,6 +144,18 @@ root/
 
 ---
 
+## 🧠 Future Enhancements
+
+1. 💬 **Group Chat Feature:** Enable multi-user chat rooms and broadcast messaging.  
+2. 👁️ **Read Receipts:** Show when messages are seen by the receiver.  
+3. 🌗 **Dark & Light Theme Toggle:** Improve accessibility and user preference.  
+4. 🔔 **Push Notifications:** Real-time alerts for new messages even when the app is closed.  
+5. ⚙️ **Redis Adapter Integration:** Scale Socket.IO for multi-server deployments.  
+6. 🕒 **Message Edit & Delete:** Allow users to modify or remove sent messages.  
+7. 🧠 **AI Chatbot Integration (Optional):** Provide quick replies or suggestions.  
+8. 🧾 **User Profile Customization:** Allow bio, status, and profile settings.  
+
+
 
 ## 🧾 License
 
@@ -155,4 +167,5 @@ This project is open-source and free to use for learning and development purpose
 
 **Samagra Jaiswal**
 Software Developer | MERN Stack Enthusiast
+
 
