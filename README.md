@@ -92,8 +92,6 @@ root/
   email: { type: String, unique: true },
   password: String,
   image: String,
-  followers: Array,
-  following: Array
 }
 ```
 
@@ -157,3 +155,4 @@ This project is open-source and free to use for learning and development purpose
 
 **Samagra Jaiswal**
 Software Developer | MERN Stack Enthusiast
+
